@@ -1,0 +1,9 @@
+<ng-container [formGroup]="editingPublicHoliday">
+  <td><input formControlName='date' /></td>
+  <td><input formControlName='name' /></td>
+  <td><input formControlName='countryCode' /></td>
+  <td><input formControlName='isFixed' type="checkbox" /></td>
+  <td>
+    <button (click)="onEdit()">SAVE</button>
+  </td>
+</ng-container>

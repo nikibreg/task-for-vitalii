@@ -1,0 +1,28 @@
+<table>
+  <tr>
+    <th>Date</th>
+    <th>Name</th>
+    <th>Country Code</th>
+    <th>Is Fixed</th>
+  </tr>
+  <ng-container *ngFor="let publicHoliday of publicHolidays; let i = index" >
+    <tr *ngIf="editingIndex != i" (dblclick)="toggleEditing(i)">
+      <td>{{ publicHoliday.date }}</td>
+      <td>{{ publicHoliday.name }}</td>
+      <td>{{ publicHoliday.countryCode }}</td>
+      <td>{{ publicHoliday.isFixed ? 'YES':'NO' }}</td>
+    </tr>
+    <tr editing-row *ngIf="editingIndex == i" (edit)="onEdit($event, i)" [publicHoliday]="publicHoliday">
+    </tr>
+  </ng-container>
+  <tr *ngIf="isAdding" [formGroup]='newPublicHoliday'>
+    <td><input formControlName='date' /></td>
+    <td><input formControlName='name' /></td>
+    <td><input formControlName='countryCode' /></td>
+    <td><input formControlName='isFixed' type="checkbox" /></td>
+    <td *ngIf="isAdding">
+      <button (click)="onAdd()">SAVE</button>
+    </td>
+  </tr>
+  <button (click)="toggleAdding()">ADD</button>
+</table>
